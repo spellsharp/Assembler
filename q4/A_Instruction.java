@@ -11,8 +11,8 @@ public class A_Instruction {
         symbolTable = new HashMap<>();
         cInstructions = new StringBuilder();
 
-        loadSymbolTable("Symbol_Table.asm");
-        processInstructions("nowhitespaceRect.asm");
+        loadSymbolTable("/home/shrisharanyan/3_College/EOC/Assembler/files/Symbol_Table.asm");
+        processInstructions("/home/shrisharanyan/3_College/EOC/Assembler/files/nowhitespaceRect.asm");
     }
 
     private static void loadSymbolTable(String symbolTablePath) {

@@ -6,8 +6,8 @@ import java.io.IOException;
 
 public class Symbols {
     public static void main(String[] args) {
-        String filePath = "nowhitespaceRect.asm";
-        String outputFilePath = "Symbols.txt";
+        String filePath = "/home/shrisharanyan/3_College/EOC/Assembler/files/nowhitespaceRect.asm";
+        String outputFilePath = "/home/shrisharanyan/3_College/EOC/Assembler/files/Symbols.txt";
 
         try {
             BufferedReader reader = new BufferedReader(new FileReader(filePath));

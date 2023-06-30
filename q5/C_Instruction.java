@@ -16,7 +16,7 @@ public class C_Instruction {
         loadCompTable();
         loadDestTable();
         loadJumpTable();
-        processInstructions("nowhitespaceRect.asm");
+        processInstructions("/home/shrisharanyan/3_College/EOC/Assembler/files/nowhitespaceRect.asm");
     }
 
     private static void loadCompTable() {

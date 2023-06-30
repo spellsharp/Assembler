@@ -41,10 +41,10 @@ public class symbol_table {
         }
 
         try {
-            FileReader fileReader = new FileReader("nowhitespaceRect.asm");
+            FileReader fileReader = new FileReader("/home/shrisharanyan/3_College/EOC/Assembler/files/nowhitespaceRect.asm");
             BufferedReader bufferedReader = new BufferedReader(fileReader);
 
-            File outputFile = new File("Symbol_Table.asm");
+            File outputFile = new File("/home/shrisharanyan/3_College/EOC/Assembler/files/Symbol_Table.asm");
             FileWriter fileWriter = new FileWriter(outputFile);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 

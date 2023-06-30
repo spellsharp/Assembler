@@ -92,13 +92,13 @@ public class Assembler {
     }
 
     public static void main(String[] args) {
-        String filename = "Rect.asm"; 
+        String filename = "/home/shrisharanyan/3_College/EOC/Assembler/files/Rect.asm"; 
 
         try {
             FileReader fr = new FileReader(filename);
             BufferedReader br = new BufferedReader(fr);
 
-            File output = new File("Output.hack");
+            File output = new File("/home/shrisharanyan/3_College/EOC/Assembler/files/Output.hack");
             FileWriter fw = new FileWriter(output);
             BufferedWriter bw = new BufferedWriter(fw);
 
