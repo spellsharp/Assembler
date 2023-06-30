@@ -53,7 +53,7 @@ public class C_Instruction {
     }
 
     private static String getCompKey2(int index) {
-        String[] keys = { "!M", "-M", "M+1", "M-1", "D+M", "D-M", "M-D", "D&M", "D|M"};
+        String[] keys = { "M", "!M", "-M", "M+1", "M-1", "D+M", "D-M", "M-D", "D&M", "D|M"};
         if (index >= 0 && index < keys.length) {
             return keys[index];
         }
@@ -102,9 +102,12 @@ public class C_Instruction {
             while ((line = reader.readLine()) != null) {
                 if (isCInstruction(line)) {
                     line = cleanLine(line);
-                    cInstructions.append(line);
+                    cInstructions.append(line+'\n');
+                    
                 }
+
             }
+            // System.out.println(cInstructions);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -122,20 +125,20 @@ public class C_Instruction {
         String jump = null;
 
         if (instruct.contains("=") && !instruct.contains(";")) {
-            System.out.println(instruct);
-            System.out.println("----------------");
+            // System.out.println(instruct);
+            // System.out.println("----------------");
             int destIndex = instruct.indexOf("=");
             dest = instruct.substring(0, destIndex);
             comp = instruct.substring(destIndex + 1);
         } else if (instruct.contains(";") && !instruct.contains("=")) {
-            System.out.println(instruct);
+            // System.out.println(instruct);
             int jumpIndex = instruct.indexOf(";");
-            System.out.println("----------------");
+            // System.out.println("----------------");
             comp = instruct.substring(0, jumpIndex);
             jump = instruct.substring(jumpIndex + 1);
         } else if (instruct.contains("=") && instruct.contains(";")) {
-            System.out.println(instruct);
-            System.out.println("----------------");
+            // System.out.println(instruct);
+            // System.out.println("----------------");
             int destIndex = instruct.indexOf("=");
             int jumpIndex = instruct.indexOf(";");
             dest = instruct.substring(0, destIndex);
