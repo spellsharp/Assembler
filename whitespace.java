@@ -5,7 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.File;
 public class whitespace {
-    public static void main(String[] args) {
+    public static void clean(String[] args) {
         try {
             FileReader fr = new FileReader("Rect.asm");
             BufferedReader br = new BufferedReader(fr); 
