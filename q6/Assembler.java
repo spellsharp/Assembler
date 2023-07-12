@@ -12,6 +12,7 @@ public class Assembler {
     private static final HashMap<String, String> destTable = new HashMap<>();
     private static final HashMap<String, String> jumpTable = new HashMap<>();
 
+    // Make the Symbol table
     static {
         symbolTable.put("R0", "0");
         symbolTable.put("R1", "1");
@@ -37,6 +38,7 @@ public class Assembler {
         symbolTable.put("SCREEN", "16384");
         symbolTable.put("KBD", "24576");
 
+        // Make the comp table
         HashMap<String, String> compTable0 = new HashMap<>();
         compTable0.put("0", "101010");
         compTable0.put("1", "111111");
@@ -72,6 +74,7 @@ public class Assembler {
         compTable.put("0", compTable0);
         compTable.put("1", compTable1);
 
+        // Make the dest table
         destTable.put(null, "000");
         destTable.put("M", "001");
         destTable.put("D", "010");
@@ -81,6 +84,7 @@ public class Assembler {
         destTable.put("AD", "110");
         destTable.put("AMD", "111");
 
+        // Make the jump table
         jumpTable.put(null, "000");
         jumpTable.put("JGT", "001");
         jumpTable.put("JEQ", "010");
@@ -92,7 +96,7 @@ public class Assembler {
     }
 
     public static void main(String[] args) {
-        String filename = "/home/shrisharanyan/3_College/EOC/Assembler/files/Rect.asm"; 
+        String filename = "/home/shrisharanyan/3_College/EOC/Assembler/files/Rect.asm";
 
         try {
             FileReader fr = new FileReader(filename);
@@ -102,6 +106,7 @@ public class Assembler {
             FileWriter fw = new FileWriter(output);
             BufferedWriter bw = new BufferedWriter(fw);
 
+            // Read file line by line
             String line;
             while ((line = br.readLine()) != null) {
                 line = line.trim();
@@ -125,6 +130,7 @@ public class Assembler {
         }
     }
 
+    // Classify the instructions and parse through them
     private static String parseInstruction(String line) {
         if (isAInstruction(line)) {
             line = cleanLines(line);
@@ -147,6 +153,18 @@ public class Assembler {
         return line.replace("\n", "").trim().substring(1);
     }
 
+    // convert string value to binary
+    private static String toBinaryString(String value) {
+        int intValue;
+        try {
+            intValue = Integer.parseInt(value);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("Invalid value: " + value);
+        }
+        return String.format("%16s", Integer.toBinaryString(intValue)).replace(' ', '0');
+    }
+
+    // A Instruction to Binary Code
     private static String parseAInstruction(String line) {
         if (symbolTable.containsKey(line)) {
             return toBinaryString(symbolTable.get(line));
@@ -161,6 +179,7 @@ public class Assembler {
         }
     }
 
+    // C Instruction to Binary Code
     private static String parseCInstruction(String line) {
         String dest = null;
         String comp;
@@ -192,27 +211,21 @@ public class Assembler {
         return "111" + binaryComp + binaryDest + binaryJump;
     }
 
+    // comp to binary
     private static String getBinaryComp(String comp) {
         boolean isAInstruction = comp.startsWith("M");
         HashMap<String, String> compTableEntry = compTable.get(isAInstruction ? "1" : "0");
         return compTableEntry.get(comp);
     }
 
+    // dest to binary
     private static String getBinaryDest(String dest) {
         return destTable.get(dest);
     }
 
+    // jump to binary
     private static String getBinaryJump(String jump) {
         return jumpTable.get(jump);
     }
 
-    private static String toBinaryString(String value) {
-        int intValue;
-        try {
-            intValue = Integer.parseInt(value);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("Invalid value: " + value);
-        }
-        return String.format("%16s", Integer.toBinaryString(intValue)).replace(' ', '0');
-    }
 }
