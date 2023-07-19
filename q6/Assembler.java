@@ -213,9 +213,14 @@ public class Assembler {
 
     // comp to binary
     private static String getBinaryComp(String comp) {
-        boolean isAInstruction = comp.startsWith("M");
+        boolean isAInstruction = comp.contains("M");
         HashMap<String, String> compTableEntry = compTable.get(isAInstruction ? "1" : "0");
-        return compTableEntry.get(comp);
+        if (isAInstruction) {
+            return "1" + compTableEntry.get(comp);
+        } else {
+            return "0" + compTableEntry.get(comp);
+        }
+        
     }
 
     // dest to binary
